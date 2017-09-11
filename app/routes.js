@@ -13,36 +13,39 @@ angular.module('ProUrban')
 			templateUrl: 'app/views/pages/login.html',
 			controller: 'loginController'
 		})
-		.when('/gastos', {
-			templateUrl: 'app/views/pages/administrador/gastos/gastos.html',
-			controller: 'cuentaxpagarController'
+		.when('/rol', {
+			templateUrl: 'app/views/pages/administrador/rol.html',
+			controller: 'rolController'
 		})
-		.when('/form_gastos', {
-			templateUrl: 'app/views/pages/administrador/gastos/form_gastos.html',
-			controller: 'cuentaxpagarController'
+		.when('/crearRol', {
+			templateUrl: 'app/views/pages/administrador/crearRol.html',
+			controller: 'rolController'
+		})
+		.when('/usuarios', {
+			templateUrl: 'app/views/pages/administrador/usuarios.html',
+			controller: 'usuarioController'
+		})
+		.when('/crearUsuario', {
+			templateUrl: 'app/views/pages/administrador/crearUsuario.html',
+			controller: 'usuarioController'
+		})
+		.when('/opcionrol', {
+			templateUrl: 'app/views/pages/administrador/opcionrol.html',
+			controller: 'opcionrolController'
+		})
+
+
+		//.when('/usuario', {
+			//templateUrl: 'app/views/pages/administrador/usuario.html',
+		//	controller: 'proveedorController'
+		//})
+		.when('/gastos', {
+			templateUrl: 'app/views/pages/administrador/gastos.html'/*,
+			controller: 'cuentaXpagarController'*/
 		})
 		.when('/proveedores', {
 			templateUrl: 'app/views/pages/administrador/proveedores.html',
 			controller: 'proveedorController'
-		})
-		.when('/deudas', {
-			templateUrl: 'app/views/pages/administrador/deudas/deudas.html',
-			controller: 'cuentaxcobrarController'
-		})
-		.when('/factura', {
-			templateUrl: 'app/views/pages/administrador/factura.html',
-			controller: 'facturaController'
-		})
-		.when('/reservas', {
-			templateUrl: 'app/views/pages/administrador/reservas.html',
-			controller: 'reservaController'
-		})
-		.when('/cuentas', {
-			templateUrl: 'app/views/pages/administrador/cuentas.html',
-			controller: 'cuentasController'
-		})
-		.when('/asientoContable', {
-			templateUrl: 'app/views/pages/administrador/asientoContable.html'
 		})
 		.when('/404', {
 			templateUrl: 'app/views/pages/page_404.html'

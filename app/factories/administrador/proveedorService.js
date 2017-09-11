@@ -10,6 +10,7 @@ angular.module('ProUrban')
 		service.eliminarProveedor = eliminarProveedor;
 		service.buscarProveedor = buscarProveedor;
 
+
 		return service;
 
 		function getProveedores() {
@@ -45,5 +46,5 @@ angular.module('ProUrban')
 			return $soap.post(AppConfig.apiUrl, "EliminarProveedor",
 				{ id: id });
 		}
-	}
-]);
+
+}]);

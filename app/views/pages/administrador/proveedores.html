@@ -16,6 +16,7 @@
 							<table class="countries_list">
 								<thead>
 									<tr>
+										<td>Id</td>
 										<td><strong>Nombre de Proveedor</strong></td>
 										<td class="fs15 fw700 text-right"><strong>RUC</strong></td>
 										<td class="text-center"><strong>Acciones</strong></td>
@@ -23,6 +24,7 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="item in data">
+										<td style="width:40px">{{item.id}}</td>
 										<td>{{item.descripcion}}</td>
 										<td class="fs15 fw700 text-right">{{item.ruc}}</td>
 										<td class="text-center">
@@ -74,6 +76,8 @@
 			</div>
 		</div>
 	</div>
+
+
 </div>
 <!-- /page content -->
 <div footer></div>

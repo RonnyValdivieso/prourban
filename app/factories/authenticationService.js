@@ -1,11 +1,16 @@
 angular.module('ProUrban')
 .factory("AuthenticationService", ['$soap', '$rootScope', 'localStorageService', 'AppConfig',
 	function($soap, $rootScope, localStorageService, AppConfig) {
+		console.log(AppConfig);
 		var service = {};
 
 		service.login = login;
 		service.setCredentials = setCredentials;
+		service.setModulo = setModulo;
+		service.setOpcion = setOpcion;
 		service.getCredentials = getCredentials;
+		service.getModulo = getModulo;
+		service.getOpcion = getOpcion;
 		service.isLoggedIn = isLoggedIn;
 
 		return service;
@@ -26,9 +31,27 @@ angular.module('ProUrban')
 			$rootScope.nombre = fullName(data.primer_nombre, data.primer_apellido);
 		}
 
+		function setOpcion(opc) {
+			localStorageService.set('opcion', opc);
+			$rootScope.opcion = opc;
+		}
+
+		function setModulo(modu) {
+			localStorageService.set('modulo', modu);
+			$rootScope.modulo = modu;
+		}
+
 		//	Consulta la información guardada en localStorage
 		function getCredentials(usuario, clave) {
 			return localStorageService.get('usuario');
+		}
+
+		function getModulo(modu) {
+			return localStorageService.get('modulo');
+		}
+
+		function getOpcion(opc) {
+			return localStorageService.get('opcion');
 		}
 
 		//	Verifica si hay información (de usuario) en localStorage

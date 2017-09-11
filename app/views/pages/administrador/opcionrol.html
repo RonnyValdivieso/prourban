@@ -1,0 +1,97 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+<div class="right_col" role="main">
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>Opciones por Rol</h2>
+							<div class="navbar-right">
+								<a class="btn btn-primary" type="submit" href="#!/crearRol">Nuevo Rol</a>
+							</div>
+					<div class="clearfix"></div>
+					<div class="x_content">
+						<div class="dashboard-widget-content">
+							<div class="col-md-12 col-xs-12">
+							<h2 class="line_30"></h2>
+							<br>
+							<table class="countries_list">
+								<thead>
+									<tr>
+										<td>Id</td>
+										<td><strong>Nombre de Rol</strong></td>
+
+									</tr>
+								</thead>
+								<tbody>
+
+
+
+									<!--<tr ng-repeat="op in data_opciones">
+										<td style="width:40px">{{op.id}}</td>
+										
+										<td>{{op.rol_id}}</td>
+										<td>{{op.opcion_id}}</td>
+										<td class="text-center">
+
+									</tr>-->
+
+									<tr ng-repeat="item in data">
+										<td style="width:40px">{{item.id}}</td>
+										<td>{{item.descripcion}}</td>
+										<td class="text-center">
+
+
+
+											<a  class="btn btn-primary" type="submit" ng-click="listarOpciones(item.id)">opciones</a>
+											<a  class="btn btn-primary" type="submit" ng-click="buscarRol(item.id)">Editar</a>
+											<button class="btn btn-danger" ng-click="eliminarRol(item.id)">Eliminar</button>
+									
+										</td>
+										</tr>
+										<tr ng-repeat="op in opct">
+										<!--<input id="clave" type="checkbox" class="form-control" placeholder="pass" ng-model="rol_id">-->
+											<td>{{op.rol_id}}</td>
+											<td>{{op.opcion_id}}</td>
+											</tr>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-6 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Editar Rol (seleccione un rol)</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				
+
+					  			
+					<tr ng-repeat="op in opct">
+											<td>{{op.rol_id}}</td>
+											<td>{{op.opcion_id}}</td>
+											</tr>
+									
+
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+</div>
+<!-- /page content -->
+<div footer></div>

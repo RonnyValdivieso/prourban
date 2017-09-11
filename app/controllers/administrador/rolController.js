@@ -1,26 +1,28 @@
 'use strict';
 
 angular.module('ProUrban')
-.controller('proveedorController', ['$scope', '$rootScope', '$location', 'localStorageService', 'ProveedorService',
-	function($scope, $rootScope, $location, localStorageService, ProveedorService) {
+.controller('rolController', ['$scope', '$rootScope', '$location', 'localStorageService', 'RolService',
+	function($scope, $rootScope, $location, localStorageService, RolService) {
 
 		$scope.proceso = 1;	// 1: insertar
 
-		$scope.getProveedores = getProveedores;
-		$scope.insertarProveedor = insertarProveedor;
-		$scope.modificarProveedor = modificarProveedor;
-		$scope.eliminarProveedor = eliminarProveedor;
-		$scope.buscarProveedor = buscarProveedor;
+		$scope.getRoles = getRoles;
+		$scope.insertarRol = insertarRol;
+		$scope.modificarRol = modificarRol;
+		$scope.eliminarRol = eliminarRol;
+		$scope.buscarRol = buscarRol;
 
-		function getProveedores() {
-			ProveedorService.getProveedores()
+		function getRoles() {
+			RolService.getRoles()
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 
 				response = JSON.parse(response.respuesta);
-			
+				//console.log(response);
+
 				if (response.codigo === 1) {
 					$scope.data = response.datos;
+
 				} else {
 					alert(response.mensaje);
 				}
@@ -29,38 +31,43 @@ angular.module('ProUrban')
 			});
 		}
 
+		function nuevo(){
+			delete $rootScope[$rootScope.descripcion];
+		}
+
 		//	Insertar Proveedor
-		function insertarProveedor() {
-			if ($scope.proceso === 1) {
-				ProveedorService.insertarProveedor($scope.descripcion, $scope.ruc)
+		function insertarRol() {
+			if ($rootScope.proceso === 1) {
+				RolService.insertarRol($scope.descripcion)
 				.then(function(response) {
 					// MANEJO DE RESPUESTA
 					response = JSON.parse(response.respuesta);
 
 					if (response.codigo === 1) {
 						clearForm();
-						$scope.getProveedores();
+						$scope.getRoles();
 					}
 
 					alert(response.mensaje);
 				}, function(err){
 					// MANEJO DE ERRORES
 				});
-			} else if ($scope.proceso === 2) {
-				modificarProveedor();
+			} else if ($rootScope.proceso === 2) {
+				modificarRol();
+
 			}
 		}
 		//modificar Proveedor
-		function modificarProveedor() {
+		function modificarRol() {
 			console.log($scope.id);
-			ProveedorService.modificarProveedor($scope.id, $scope.descripcion, $scope.ruc)
+			RolService.modificarRol($scope.id, $scope.descripcion)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);
 
 				if (response.codigo === 1) {
-					clearForm();
-					$scope.getProveedores();
+					//clearForm();
+					$scope.getRoles();
 					$scope.proceso = 1;	// 1: insertar
 				}
 
@@ -71,14 +78,14 @@ angular.module('ProUrban')
 		}
 
 		//eliminar Proveedor
-		function eliminarProveedor(id) {
-			ProveedorService.eliminarProveedor(id)
+		function eliminarRol(id) {
+			RolService.eliminarRol(id)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);
 
 				if (response.codigo === 1) {
-					$scope.getProveedores();
+					$scope.getRoles();
 				}
 
 				alert(response.mensaje);
@@ -88,18 +95,18 @@ angular.module('ProUrban')
 		}
 
 		//buscar el Proveedor para luego ser modificado
-		function buscarProveedor(id) {
-			ProveedorService.buscarProveedor(id)
+		function buscarRol(id) {
+			RolService.buscarRol(id)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);
 
 				if (response.codigo === 1) {
 					var data = response.datos[0];
-					$scope.id = data.id;
-					$scope.descripcion = data.descripcion;
-					$scope.ruc = data.ruc;
-					$scope.proceso = 2;	// 2: editar
+					$rootScope.id = data.id;
+					$rootScope.descripcion = data.descripcion;
+					$rootScope.ruc = data.ruc;
+					$rootScope.proceso = 2;	// 2: editar
 				}
 			}, function(err) {
 				// MANEJO DE ERRORES
@@ -108,10 +115,10 @@ angular.module('ProUrban')
 
 		//	Limpia los inputs de tipo text del formulario
 		function clearForm() {
-			$('#proveedorForm input[type="text"]').val("");
+			$('#rolForm input[type="text"]').val("");
 		}
 
-		$scope.getProveedores();
+		$scope.getRoles();
 
 	}
 ]);

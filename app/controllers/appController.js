@@ -11,7 +11,11 @@ angular.module('ProUrban')
 		    	$location.path('/login');
 		    } else {
 		    	var data = AuthenticationService.getCredentials();
+		    	var data_modulo = AuthenticationService.getModulo();
+		    	var data_opcion = AuthenticationService.getOpcion();
 		    	AuthenticationService.setCredentials(data);
+		    	AuthenticationService.setModulo(data_modulo);
+		    	AuthenticationService.setOpcion(data_opcion);
 		    }
 		}
 
@@ -20,6 +24,7 @@ angular.module('ProUrban')
 			if (!AuthenticationService.isLoggedIn()) {
 				$location.path('/login');
 			} else {
+				//console.log('SI');
 		    	$location.path('/');
 		    }
 		}

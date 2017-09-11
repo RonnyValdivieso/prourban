@@ -18,10 +18,14 @@ angular.module('ProUrban')
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta)
-				console.log(response);
+				//console.log(response);
 				if (response.codigo === 1) {
 					var data = response.datos[0];
+					var modu = response.datos_modulo;
+					var opc = response.datos_opcion;
 					AuthenticationService.setCredentials(data);
+					AuthenticationService.setModulo(modu);
+					AuthenticationService.setOpcion(opc);
 					$location.path('/');
 				} else {
 					alert(response.mensaje);

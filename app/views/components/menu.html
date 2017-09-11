@@ -2,7 +2,7 @@
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
 			<a href="index.html" class="site_title">
-				<img src="assets/images/prourban-logo.png" alt="logo" height="30" width="200"> 
+				<img src="assets/images/prourban-logo.png" alt="logo" height="30" width="200">
 			</a>
 		</div>
 		<div class="clearfix"></div>
@@ -18,55 +18,22 @@
 			</div>
 		</div>
 		<!-- /menu profile quick info -->
-
 		<br />
-
 		<!-- sidebar menu -->
 		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 	  		<div class="menu_section">
 				<h3>Menu</h3>
-				<ul class="nav side-menu">
-					<li><a><i class="fa fa-home"></i> Alicuotas <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-			  				<li><a href="index.html">Pago Alicuota</a></li>
-			  				<li><a href="index2.html">Consulta Alicuota</a></li>
-						</ul>
-					</li>
-					<li><a><i class="fa fa-calendar"></i> Reservas <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="form_advanced.html">Pago Reservas</a></li>
-							<li><a href="form.html">Consulta Reservas</a></li>
-						</ul>
-					</li>
-		  			<li><a><i class="fa fa-bar-chart"></i> Pagos <span class="fa fa-chevron-down"></span></a>
-		  				<ul class="nav child_menu">
-			  				<li><a href="general_elements.html">Pago Proveedor</a></li>
-						</ul>
-		  			</li>
-		  			<li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
-		  				<ul class="nav child_menu">
-							<li><a href="chartjs.html">Consulta Usuarios</a></li>
-							<li><a href="chartjs2.html">Añadir Usuario</a></li>
-						</ul>
-					</li>
-					<li><a><i class="fa fa-bar-chart"></i> Reportes <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="general_elements.html">Alicuotas</a></li>
-							<li><a href="media_gallery.html">Reservas</a></li>
-							<li><a href="typography.html">Ingresos</a></li>
-							<li><a href="icons.html">Gastos</a></li>
-						</ul>
-					</li>
-					<li><a><i class="fa fa-cogs"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="tables.html">Alicuotas</a></li>
-							<li><a href="tables_dynamic.html">Reservas</a></li>
-							<li><a href="tables_dynamic.html">Areas</a></li>
-							<li><a href="tables_dynamic.html">Villas</a></li>
-							<li><a href="#!/proveedores">Proveedores</a></li>
-						</ul>
-					</li>
-				</ul>
+
+					<ul class="nav side-menu">
+
+						<li ng-repeat="mod in $parent.modulo"><a><i class="{{mod.iconclass}}"></i> {{mod.descripcion}} <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+				  				<li ng-repeat="opc in $parent.opcion" data-ng-if="mod.id === opc.modulo_id"><a href="{{opc.url}}">{{opc.nombre}}</a></li>
+							</ul>
+						</li>
+
+	                </ul>
+
 			</div>
 		</div>
 		<!-- /sidebar menu -->
