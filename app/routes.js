@@ -86,19 +86,19 @@ angular.module('ProUrban')
 			controller: 'horariomantenimientoController'
 		})
 		.when('/parametros', {
-			templateUrl: 'app/views/pages/administrador/parametros.html',
+			templateUrl: 'app/views/pages/administrador/parametro/parametros.html',
 			controller: 'parametroController'
 		})
 		.when('/parametrose', {
-			templateUrl: 'app/views/pages/administrador/parametrose.html',
+			templateUrl: 'app/views/pages/administrador/parametro/parametrose.html',
 			controller: 'parametroeController'
 		})
 		.when('/insertarparametro', {
-			templateUrl: 'app/views/pages/administrador/agregarparametro.html',
+			templateUrl: 'app/views/pages/administrador/parametro/agregarparametro.html',
 			controller: 'parametroController'
 		})
 		.when('/editarparametro', {
-			templateUrl: 'app/views/pages/administrador/editarparametro.html',
+			templateUrl: 'app/views/pages/administrador/parametro/editarparametro.html',
 			controller: 'parametroController'
 		})
 		.when('/usuarios', {
@@ -111,42 +111,42 @@ angular.module('ProUrban')
 		})
 		.when('/editarusuario', {
 			templateUrl: 'app/views/pages/administrador/usuario/editarusuario.html',
-			controller: 'parametroController'
+			controller: 'usuarioController'
 		})
 		.when('/usuariose', {
 			templateUrl: 'app/views/pages/administrador/usuario/usuariose.html',
 			controller: 'usuarioeController'
 		})
 		.when('/conceptopagos', {
-			templateUrl: 'app/views/pages/administrador/conceptopagos.html',
+			templateUrl: 'app/views/pages/administrador/conceptopago/conceptopagos.html',
 			controller: 'conceptopagoController'
 		})
 		.when('/conceptopagose', {
-			templateUrl: 'app/views/pages/administrador/conceptopagose.html',
+			templateUrl: 'app/views/pages/administrador/conceptopago/conceptopagose.html',
 			controller: 'conceptopagoeController'
 		})
 		.when('/insertarconceptopago', {
-			templateUrl: 'app/views/pages/administrador/agregarconceptopago.html',
+			templateUrl: 'app/views/pages/administrador/conceptopago/agregarconceptopago.html',
 			controller: 'conceptopagoController'
 		})
 		.when('/editarconceptopago', {
-			templateUrl: 'app/views/pages/administrador/editarconceptopago.html',
+			templateUrl: 'app/views/pages/administrador/conceptopago/editarconceptopago.html',
 			controller: 'conceptopagoController'
 		})
 		.when('/formapagos', {
-			templateUrl: 'app/views/pages/administrador/formapagos.html',
+			templateUrl: 'app/views/pages/administrador/formapago/formapagos.html',
 			controller: 'formapagoController'
 		})
 		.when('/formapagose', {
-			templateUrl: 'app/views/pages/administrador/formapagose.html',
+			templateUrl: 'app/views/pages/administrador/formapago/formapagose.html',
 			controller: 'formapagoeController'
 		})
 		.when('/insertarformapago', {
-			templateUrl: 'app/views/pages/administrador/agregarformapago.html',
+			templateUrl: 'app/views/pages/administrador/formapago/agregarformapago.html',
 			controller: 'formapagoController'
 		})
 		.when('/editarformapago', {
-			templateUrl: 'app/views/pages/administrador/editarformapago.html',
+			templateUrl: 'app/views/pages/administrador/formapago/editarformapago.html',
 			controller: 'formapagoController'
 		})//seguridad
 		.when('/rol', {

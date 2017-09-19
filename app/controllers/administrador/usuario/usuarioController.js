@@ -50,6 +50,7 @@ angular.module('ProUrban')
         }
     
 		function insertarUsuario() {
+			
 			if ($scope.proceso === 1) {
 				UsuarioService.insertarUsuario($scope.cedula, $scope.primer_nombre, $scope.segundo_nombre, $scope.primer_apellido, $scope.segundo_apellido, $scope.telefono, $scope.correo, $scope.nombre_usuario, $scope.clave)
 				.then(function(response) {
@@ -74,7 +75,11 @@ angular.module('ProUrban')
                                
                             
 		function modificarUsuario() {
-			console.log($scope.id);
+
+			console.log('se ejecuto modificarUsuario');
+			console.log('id: ' + $scope.id);
+			console.log('nombre_usuario: ' + $scope.nombre_usuario);
+
             UsuarioService.modificarUsuario($scope.id, $scope.cedula, $scope.primer_nombre, $scope.segundo_nombre, $scope.primer_apellido, $scope.segundo_apellido, $scope.telefono, $scope.correo, $scope.nombre_usuario, $scope.clave)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
@@ -96,19 +101,19 @@ angular.module('ProUrban')
 
 		//eliminar Proveedor
 		function eliminarUsuario(id) { 
-             UsuarioService.eliminarUsuario(id)
+         	UsuarioService.eliminarUsuario(id)
 			.then(function(response) {
-				// MANEJO DE RESPUESTA
-				response = JSON.parse(response.respuesta);
+			// MANEJO DE RESPUESTA
+			response = JSON.parse(response.respuesta);
 
-				if (response.codigo === 1) {
-                    $scope.getUsuarios();
-                   // $scope.getInmuebles();
-				}
+			if (response.codigo === 1) {
+                $scope.getUsuarios();
+               // $scope.getInmuebles();
+			}
 				alert(response.mensaje);
 			}, function(err){ 
-				// MANEJO DE ERRORES
-			});
+			// MANEJO DE ERRORES
+				});
 		}
 
 		function buscarUsuario(id) {
