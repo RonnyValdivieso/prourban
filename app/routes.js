@@ -35,7 +35,23 @@ angular.module('ProUrban')
 		})
 		.when('/reservas', {
 			templateUrl: 'app/views/pages/administrador/reservas.html',
+			controller: 'reservasController'
+		})
+        .when('/reserva', {
+			templateUrl: 'app/views/pages/administrador/reserva.html',
 			controller: 'reservaController'
+		})
+        .when('/reservarArea', {
+			templateUrl: 'app/views/pages/administrador/usuario/reservarArea.html',
+			controller: 'reservauController'
+		})
+        .when('/reservaLista', {
+			templateUrl: 'app/views/pages/administrador/reservaLista.html',
+			controller: 'reservaListaController'
+		})
+        .when('/estadoreserva', {
+			templateUrl: 'app/views/pages/administrador/usuario/estadoreserva.html',
+			controller: 'estadoreservaController'
 		})
 		.when('/cuentas', {
 			templateUrl: 'app/views/pages/administrador/cuentas.html',

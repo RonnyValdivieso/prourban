@@ -1,0 +1,197 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            
+
+            
+            <div class="row">
+             
+              <div class="clearfix"></div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Panel Reserva </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+                   
+                      
+                      
+                        <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+								<thead>
+									<tr>
+                                         <th class="column-title">Nombres</th>
+                            <th class="column-title">Día Reserva</th>
+                            <th class="column-title">Desde </th>
+                            <th class="column-title">Hasta </th>
+                            <th class="column-title">Estado </th>
+                                        <th class="column-title">Area </th>
+                                         <th width="10%" class="column-title"> </th>
+                                       
+                                        
+                                        
+										<!--<td class="text-center">Id</td>
+										<td class="text-center"><strong>fecha_reserva</strong></td>
+										<td class="text-center"><strong>fecha_solicitud</strong></td>
+										<td class="text-center"><strong>estado</strong></td>
+                                        <td class="text-center"><strong>usuario_id</strong></td>
+                                        <td class="text-center"><strong>area_id</strong></td>-->
+									</tr>
+								</thead>
+								<tbody>
+                                  
+									 <tr ng-repeat="item in data">
+                                      
+                                    
+                                        <td style="width:40px">{{item.nombre}}</td>
+										<td style="width:40px">{{item.fechaReserva}}</td>
+										<td style="width:40px">{{item.desde}}</td>
+                                        <td style="width:40px">{{item.hasta}}</td>
+                                        <td style="width:40px">{{item.estado}}</td>
+                                           <td style="width:40px">{{item.area}}</td>
+                                        <td class="text-center">
+											<button class="btn btn-primary" ng-click="CancelarPreReserva(item.id_reserva)">Cancelar</button>
+											
+										</td>
+                                       
+								   
+									
+                                    </tr>
+                                        
+                                   
+								</tbody>
+							</table>
+							
+						 </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              
+              
+              <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Tiempo eliminacion</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                <div class="x_content">
+                    <br />
+                    <form novalidate id="horaForm" class="form-horizontal form-label-left" ng-submit="guardarHora()">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Horas</label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="descripcion" type="number"  step="any" class="form-control" placeholder="tiempo duracion reserva" ng-model="valor">
+                            </div>
+                        </div>
+                       
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                              
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                                <input type="submit" class="btn btn-success" ng-click="eliminacionAutomatica(valor)" value="Guardar"/>
+                               <!-- <input class="btn btn-danger" ng-click="eliminacionAutomatica(valor)" value="Aceptar"/>-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
+              </div>
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Hora Mantenimiento</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                <div class="x_content">
+                    <br />
+                   <form class="form-horizontal form-label-left" ng-submit="insertarHoraMantenimiento()">
+                      
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Inicio</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input id="fecha" type="date" class="form-control" placeholder="Default Input"  ng-model="fecha_inicio">
+                        </div>
+                      </div>  
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha Fin</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input id="fecha" type="date" class="form-control" placeholder="Default Input"  ng-model="fecha_fin">
+                        </div>
+                      </div>  
+                        
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">DESDE</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input id="desde" type="time" class="form-control" placeholder="Default Input" min="00:00"
+                                 max="22:00" step="3600"  ng-model="desde">
+                        </div>
+                      </div> 
+                         <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">HASTA</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input id="hasta" type="time" class="form-control" placeholder="Default Input" min="00:00"
+                                 max="22:00" step="3600"  ng-model="hasta">
+                        </div>
+                      </div> 
+                        
+                      
+                        
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Area</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select  class="form-control" ng-model="area">
+                          
+                            <option ng-repeat="item in datas" value="{{item.id}}">{{item.descripcion}}</option>
+                           <!-- <option>cancha</option>  --> 
+                          </select>
+                        </div>
+                      </div>
+                     
+                      
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <!-- <button type="reset" class="btn btn-danger">Agregar Area</button>-->
+                          <button type="reset" class="btn btn-primary">Reset</button>
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                      </div>
+
+                    </form>
+                </div>
+                </div>
+              </div>
+              </div>
+              
+              
+          </div>
+        </div>
+        <!-- /page content -->
+<div footer></div>
