@@ -1,0 +1,91 @@
+<div menu></div>
+<div header></div>
+<!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            
+
+            
+            <div class="row">
+             
+              <div class="clearfix"></div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Panel Reservas Aceptadas </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+                   
+                      
+                      
+                        <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+								<thead>
+									<tr>
+                                         <th class="column-title">Usuario </th>
+                            <th class="column-title">Día Reserva</th>
+                            <th class="column-title">Desde </th>
+                            <th class="column-title">Hasta </th>
+                            <th class="column-title">Estado </th>
+                                         <th class="column-title">Area </th>
+                                         <th width="10%" class="column-title"> </th>
+                                         <th width="10%" class="column-title"> </th>
+                                        
+                                        
+										<!--<td class="text-center">Id</td>
+										<td class="text-center"><strong>fecha_reserva</strong></td>
+										<td class="text-center"><strong>fecha_solicitud</strong></td>
+										<td class="text-center"><strong>estado</strong></td>
+                                        <td class="text-center"><strong>usuario_id</strong></td>
+                                        <td class="text-center"><strong>area_id</strong></td>-->
+									</tr>
+								</thead>
+								<tbody>
+                                  
+									<tr ng-repeat="item in data">
+                                        <!--<tr ng-repeat="item in data">-->
+                                        
+                                    
+                                        <td style="width:40px">{{item.nombre}}</td>
+										<td style="width:40px">{{item.fechaReserva}}</td>
+										<td style="width:40px">{{item.desde}}</td>
+                                        <td style="width:40px">{{item.hasta}}</td>
+                                        <td style="width:40px">{{item.estado}}</td>
+                                         <td style="width:40px">{{item.area}}</td>
+                                        <td class="text-center">
+											<button class="btn btn-primary" ng-click="CancelarPreReserva(item.id_reserva)">Eliminar</button>
+											
+										</td>
+                                       <!-- <td class="text-center">
+											
+											<button class="btn btn-danger" ng-click="eliminarProveedor(item.id)">Editar</button>
+										</td>-->
+                                        
+								   
+									<!--</tr>-->
+                                    </tr>
+                                        
+                                   
+								</tbody>
+							</table>
+							
+						 </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+<div footer></div>
