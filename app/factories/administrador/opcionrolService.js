@@ -11,6 +11,7 @@ angular.module('ProUrban')
 		service.modificarRol = modificarRol;
 		service.eliminarRol = eliminarRol;
 		service.listarOpciones = listarOpciones;
+		service.getModuloOpcion = getModuloOpcion;
 
 
 		return service;
@@ -26,6 +27,12 @@ angular.module('ProUrban')
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "ListaRol");
+		}
+
+		function getModuloOpcion() {
+			//	Realiza la llamada al servicio web enviando los parámetros
+			//	en formato JSON
+			return $soap.post(AppConfig.apiUrl, "ListarModuloOpcion");
 		}
 
 		function getOpciones() {

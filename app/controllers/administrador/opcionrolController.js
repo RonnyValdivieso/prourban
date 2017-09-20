@@ -14,6 +14,7 @@ angular.module('ProUrban')
 		$scope.eliminarRol = eliminarRol;
 		$scope.buscarRol = buscarRol;
 		$scope.listarOpciones = listarOpciones;
+		$scope.getModuloOpcion = getModuloOpcion;
 
 		function getRoles() {
 			OpcionRolService.getRoles()
@@ -26,6 +27,24 @@ angular.module('ProUrban')
 				if (response.codigo === 1) {
 					$scope.data = response.datos;
 
+				} else {
+					alert(response.mensaje);
+				}
+			}, function(err) {
+				// MANEJO DE ERRORES
+			});
+		}
+
+		function getModuloOpcion() {
+			OpcionRolService.getModuloOpcion()
+			.then(function(response) {
+				// MANEJO DE RESPUESTA
+
+				response = JSON.parse(response.respuesta);
+
+				if (response.codigo === 1) {
+					$scope.data_modulo = response.datos_modulo;
+					$scope.data_opcion = response.datos_opcion;
 				} else {
 					alert(response.mensaje);
 				}
@@ -163,6 +182,7 @@ angular.module('ProUrban')
 
 		$scope.getRoles();
 		$scope.getOpciones();
+		$scope.getModuloOpcion();
 
 
 

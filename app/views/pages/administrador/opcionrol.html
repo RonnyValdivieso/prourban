@@ -49,7 +49,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="op in data_opciones">
+									<!--<tr ng-repeat="op in data_opciones">
 											<td>{{op.nombre}}</td>
 											<td ng-repeat="oprol in opct"  data-ng-if="op.id === oprol.opcion_id">
 
@@ -58,9 +58,28 @@
 											<td ng-repeat-else>
 											<input type="checkbox" class="form-control" placeholder="pass" ng-model="rol_id" id="active">
 											</td>
-											</tr>
+											</tr>-->
+									<tr>
 
+										<td>
 
+											<div class="form-group"  ng-repeat="modul in data_modulo">
+												
+												<label> {{modul.descripcion}} 
+												</label>
+												<div class="form-group"  ng-repeat="opc in data_opcion" data-ng-if="modul.id === opc.modulo_id" ng-model="data">
+						
+													
+													<p>&nbsp;<input type="checkbox" id="opc_{{opc.id}}" name="opcion[]" ng-checked="{{data.opcion_id[opc.id] === opc.id}}" > {{opc.nombre}} </p>
+													
+						
+												</div>
+												
+											</div>
+
+										</td>
+
+									</tr>
 
 							</tbody>
 							</table>
