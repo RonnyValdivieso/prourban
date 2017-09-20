@@ -11,7 +11,16 @@ angular.module('ProUrban')
 		$scope.insertarRol = insertarRol;
 		$scope.modificarRol = modificarRol;
 		$scope.eliminarRol = eliminarRol;
+        $scope.activarRol = activarRol;
 		$scope.buscarRol = buscarRol;
+		$scope.nuevoRol = nuevoRol;
+
+		window.onpoptate = function(){
+			$rootScope.proceso = localStorageService.get("proceso");
+			if ($rootScope.proceso == 2){
+				clearForm();
+			}
+		}
 
 		function getRoles() {
 			RolService.getRoles()
@@ -32,9 +41,11 @@ angular.module('ProUrban')
 			});
 		}
 
-		function nuevo(){
-			delete $rootScope[$rootScope.descripcion];
-		}
+		function nuevoRol() {
+			alert("Limpiando datos");
+			  $rootScope.descripcion= null;
+
+	    }
 
 		//	Insertar Proveedor
 		function insertarRol() {
@@ -47,6 +58,7 @@ angular.module('ProUrban')
 					if (response.codigo === 1) {
 						clearForm();
 						$scope.getRoles();
+						window.location = "index.html#!/rol";
 					}
 
 					alert(response.mensaje);
@@ -81,6 +93,23 @@ angular.module('ProUrban')
 		//eliminar Proveedor
 		function eliminarRol(id) {
 			RolService.eliminarRol(id)
+			.then(function(response) {
+				// MANEJO DE RESPUESTA
+				response = JSON.parse(response.respuesta);
+
+				if (response.codigo === 1) {
+					$scope.getRoles();
+				}
+
+				alert(response.mensaje);
+			}, function(err){
+				// MANEJO DE ERRORES
+			});
+		}
+        
+        //activar Proveedor
+		function activarRol(id) {
+			RolService.activarRol(id)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);

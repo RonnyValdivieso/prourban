@@ -14,6 +14,7 @@ angular.module('ProUrban')
 		$scope.modificarUsuario = modificarUsuario;
 		$scope.eliminarUsuario = eliminarUsuario;
 		$scope.buscarUsuario = buscarUsuario;
+		$scope.nuevoUsuario = nuevoUsuario;
 
 		function getUsuarios() {
 			UsuarioService.getUsuarios()
@@ -31,6 +32,15 @@ angular.module('ProUrban')
 				// MANEJO DE ERRORES
 			});
 		}
+
+		function nuevoUsuario() {
+			alert("Limpiando datos");
+			  $rootScope.descripcion= null;
+			  $rootScope.nombre_usuario= null;
+			  $rootScope.clave= null;
+			  $rootScope.persona_id= null;
+			  $rootScope.rol_id= null;
+	  	}
 
 		function getRol() {
 			UsuarioService.getRol()
@@ -77,6 +87,7 @@ angular.module('ProUrban')
 					if (response.codigo === 1) {
 						clearForm();
 						$scope.getUsuarios();
+						window.location = "index.html#!/usuarios";
 					}
 
 					alert(response.mensaje);
