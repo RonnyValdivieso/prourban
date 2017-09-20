@@ -8,7 +8,7 @@
 				<div class="x_title">
 					<h2>Listados de Roles</h2>
 							<div class="navbar-right">
-								<a class="btn btn-primary" type="submit" ng-click="nuevo()" href="#!/crearRol">Nuevo Rol</a>
+								<a class="btn btn-primary" type="submit" ng-click="nuevoRol()" href="#!/crearRol">Nuevo Rol</a>
 							</div>
 					<div class="clearfix"></div>
 					<div class="x_content">
@@ -32,7 +32,8 @@
 
 
 											<a  class="btn btn-primary" type="submit" ng-click="buscarRol(item.id)"  href="#!/crearRol">Editar</a>
-											<button class="btn btn-danger" ng-click="eliminarRol(item.id)">Eliminar</button>
+											<button class="btn btn-danger" data-ng-if="item.estado == 1" ng-click="eliminarRol(item.id)">Inactivar</button>
+                                            <button class="btn btn-success" data-ng-if="item.estado == 2" ng-click="activarRol(item.id)">Activar</button>
 										</td>
 									</tr>
 								</tbody>

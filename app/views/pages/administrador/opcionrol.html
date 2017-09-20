@@ -3,13 +3,10 @@
 <!-- page content -->
 <div class="right_col" role="main">
 	<div class="row">
-		<div class="col-md-6 col-xs-12">
+
 			<div class="x_panel">
 				<div class="x_title">
 					<h2>Opciones por Rol</h2>
-							<div class="navbar-right">
-								<a class="btn btn-primary" type="submit" href="#!/crearRol">Nuevo Rol</a>
-							</div>
 					<div class="clearfix"></div>
 					<div class="x_content">
 						<div class="dashboard-widget-content">
@@ -26,17 +23,6 @@
 								</thead>
 								<tbody>
 
-
-
-									<!--<tr ng-repeat="op in data_opciones">
-										<td style="width:40px">{{op.id}}</td>
-										
-										<td>{{op.rol_id}}</td>
-										<td>{{op.opcion_id}}</td>
-										<td class="text-center">
-
-									</tr>-->
-
 									<tr ng-repeat="item in data">
 										<td style="width:40px">{{item.id}}</td>
 										<td>{{item.descripcion}}</td>
@@ -44,49 +30,49 @@
 
 
 
-											<a  class="btn btn-primary" type="submit" ng-click="listarOpciones(item.id)">opciones</a>
-											<a  class="btn btn-primary" type="submit" ng-click="buscarRol(item.id)">Editar</a>
-											<button class="btn btn-danger" ng-click="eliminarRol(item.id)">Eliminar</button>
-									
+											<a  class="btn btn-primary" type="submit" ng-click="listarOpciones(item.id)">Mostrar opciones</a>
+											<a  class="btn btn-primary" type="submit" ng-click="guardarOpciones(item.id)">Guardar</a>
+
 										</td>
+
 										</tr>
-										<tr ng-repeat="op in opct">
-										<!--<input id="clave" type="checkbox" class="form-control" placeholder="pass" ng-model="rol_id">-->
-											<td>{{op.rol_id}}</td>
-											<td>{{op.opcion_id}}</td>
-											</tr>
-									
+
+
+
+
 								</tbody>
+
+								<thead>
+									<tr>
+										<td><h2>Opciones del rol</h2></td>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="op in data_opciones">
+											<td>{{op.nombre}}</td>
+											<td ng-repeat="oprol in opct"  data-ng-if="op.id === oprol.opcion_id">
+
+											<input type="checkbox" class="form-control" placeholder="pass" ng-model="rol_id" id="active" ng-checked="true">
+											</td>
+											<td ng-repeat-else>
+											<input type="checkbox" class="form-control" placeholder="pass" ng-model="rol_id" id="active">
+											</td>
+											</tr>
+
+
+
+							</tbody>
 							</table>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-	</div>
-	<div class="col-md-6 col-xs-12">
-		<div class="x_panel">
-			<div class="x_title">
-				<h2>Editar Rol (seleccione un rol)</h2>
-				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-			<div class="x_content">
-				
 
-					  			
-					<tr ng-repeat="op in opct">
-											<td>{{op.rol_id}}</td>
-											<td>{{op.opcion_id}}</td>
-											</tr>
-									
 
-			</div>
-		</div>
-	</div>
 
 
 

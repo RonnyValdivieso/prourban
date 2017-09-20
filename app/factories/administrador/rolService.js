@@ -9,6 +9,7 @@ angular.module('ProUrban')
 		service.buscarRol = buscarRol;
 		service.modificarRol = modificarRol;
 		service.eliminarRol = eliminarRol;
+        service.activarRol = activarRol;
 
 
 		return service;
@@ -44,6 +45,13 @@ angular.module('ProUrban')
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "EliminarRol",
+				{ id: id });
+		}
+        
+        function activarRol(id) {
+			//	Realiza la llamada al servicio web enviando los parámetros
+			//	en formato JSON
+			return $soap.post(AppConfig.apiUrl, "ActivarRol",
 				{ id: id });
 		}
 

@@ -22,13 +22,15 @@
 							<input id="clave" type="password" class="form-control" placeholder="pass" ng-model="clave">
 							<select class="form-control" id="persona_id" ng-model="persona_id">
 
-								<option ng-repeat="per in data_persona" value="{{per.id}}" ng-selected="{{per.id == persona_id}}">{{ per.primer_nombre + ' ' + per.primer_apellido }}</option>
+								<option value="" selected >Seleccione una persona</option>
+                                <option ng-repeat="per in data_persona" value="{{per.id}}" ng-selected="{{per.id == persona_id}}">{{ per.primer_nombre + ' ' + per.primer_apellido }}</option>
 
 							</select>
 
 							<select class="form-control" id="rol_id" ng-model="rol_id">
 
-								<option ng-repeat="rol in data_rol" value="{{rol.id}}" ng-selected="{{rol.id == rol_id}}">{{rol.descripcion}}</option>
+								<option value="" selected >Seleccione un rol</option>
+                                <option ng-repeat="rol in data_rol" value="{{rol.id}}" ng-selected="{{rol.id == rol_id}}">{{rol.descripcion}}</option>
 
 							</select>
 						</div>
