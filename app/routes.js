@@ -62,31 +62,31 @@ angular.module('ProUrban')
 			controller: 'asientoController'
 		})
 		.when('/areas', {
-			templateUrl: 'app/views/pages/administrador/areas.html',
+			templateUrl: 'app/views/pages/administrador/areas/areas.html',
 			controller: 'areaController'
 		})
 		.when('/areasinactivas', {
-			templateUrl: 'app/views/pages/administrador/areasinactivas.html',
+			templateUrl: 'app/views/pages/administrador/areas/areasinactivas.html',
 			controller: 'areasController'
 		})
 		 .when('/insertararea', {
-			templateUrl: 'app/views/pages/administrador/agregarareas.html',
+			templateUrl: 'app/views/pages/administrador/areas/agregarareas.html',
 			controller: 'areaController'
 		})
 		 .when('/modificararea', {
-			templateUrl: 'app/views/pages/administrador/modificarareas.html',
+			templateUrl: 'app/views/pages/administrador/areas/modificarareas.html',
 			controller: 'areaController'
 		})
 		.when('/inmuebles', {
-			templateUrl: 'app/views/pages/administrador/inmuebles.html',
+			templateUrl: 'app/views/pages/administrador/inmuebles/inmuebles.html',
 			controller: 'inmuebleController'
 		})
 		.when('/insertarinmueble', {
-			templateUrl: 'app/views/pages/administrador/agregarinmuebles.html',
+			templateUrl: 'app/views/pages/administrador/inmuebles/agregarinmuebles.html',
 			controller: 'inmuebleController'
 		})
 		 .when('/modificarinmueble', {
-			templateUrl: 'app/views/pages/administrador/modificarinmueble.html',
+			templateUrl: 'app/views/pages/administrador/inmuebles/modificarinmueble.html',
 			controller: 'inmuebleController'
 		})
 		 .when('/horariosmantenimiento', {
