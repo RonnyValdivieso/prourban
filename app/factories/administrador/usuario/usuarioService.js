@@ -39,7 +39,7 @@ angular.module('ProUrban')
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "ModificarUsuario",
-					{ id: id, descripcion: descripcion, ruc: ruc });
+					{ id: id, cedula: cedula, primer_nombre: primer_nombre, segundo_nombre: segundo_nombre, primer_apellido: primer_apellido, segundo_apellido: segundo_apellido, telefono: telefono, correo: correo, nombre_usuario: nombre_usuario, clave: clave });
 		}
 
 		function eliminarUsuario(id) {
