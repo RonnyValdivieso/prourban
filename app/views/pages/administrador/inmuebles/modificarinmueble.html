@@ -44,37 +44,18 @@
 						<div class="col-md-9 col-sm-9 col-xs-12">
 							<input id="numero_banios" type="text" class="form-control" placeholder="" value="{{$parent.numero_banios}}" ng-model="numero_banios">
 						</div>
-					</div>
-                        <!--<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
-								<div class="col-md-9 col-sm-9 col-xs-12">
-									<select class="form-control" id="usuario_id" ng-model="usuario_id">
-										
-                                        <option>{{usuario.nombre_usuario}}</option>
-										<option value="1">admin</option>
-										<option value="2">residente</option>
-                                        <option value="3">administrador</option>
-                                        <option value="4">residente</option>
-                                        <option value="5">presidente</option>
-										
-									</select>
-								</div>
-					</div>-->
-                        
+					</div>  
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
-								<select class="select2_single form-control" value="{{usuario.nombre_usuario}}" tabindex="-1" 
-									ng-options="option.nombre_usuario for option in usuarios track by option.id"
-									ng-model="usuario">
+								<select class="select2_single form-control" value="{{usuario.nombre_usuario}}" tabindex="-1" ng-options="option.nombre_usuario for option in usuarios track by option.id" ng-model="usuario">
 								</select>
 							</div>
 						</div>
 						<div class="ln_solid"></div>
 						<div class="form-group">
 							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-								<button type="button" class="btn btn-primary" onclick="parent.location='#!/inmuebles'">Cancel</button>
-                                <!--<input type="button" class="btn btn-primary" onclick="parent.location='#!/inmuebles'" value="Volver">-->
+								<button type="button" class="btn btn-primary" ng-click="goTo('/inmuebles')">Regresar</button>
 								<button type="reset" class="btn btn-primary">Reset</button>
 								<button type="submit" class="btn btn-success">Guardar</button>
 							</div>

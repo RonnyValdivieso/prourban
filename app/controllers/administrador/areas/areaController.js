@@ -4,8 +4,7 @@ angular.module('ProUrban')
 .controller('areaController', ['$scope', '$rootScope', '$location', 'localStorageService', 'AreaService',
 	function($scope, $rootScope, $location, localStorageService, AreaService) {
 
-	// 1: insertar
-        $scope.proceso = 1;
+		$scope.proceso = localStorageService.get("proceso");	// 1: insertar
         
         $scope.getAreas = getAreas;
         $scope.getListaAreasInactivas = getListaAreasInactivas;
@@ -49,6 +48,7 @@ angular.module('ProUrban')
         }
     
 		function insertarArea() {
+			$scope.proceso = localStorageService.get("proceso");
 			if ($scope.proceso === 1) {
                 AreaService.insertarArea($scope.descripcion, $scope.valor, $scope.estado)
 				.then(function(response) {
@@ -76,7 +76,7 @@ angular.module('ProUrban')
                             
 		function modificarArea() {
 			console.log($scope.id);
-            AreaService.modificarArea($scope.id, $scope.descripcion, $scope.valor, $scope.estado)
+            AreaService.modificarArea($scope.id, $scope.descripcion, $scope.valor, $scope.estado.descripcion)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);
@@ -86,6 +86,7 @@ angular.module('ProUrban')
 					clearForm();
                                $scope.getAreas();
 					$scope.proceso = 1;	// 1: insertar
+					localStorageService.set("proceso", $scope.proceso);
 				}
 
 				alert(response.mensaje);
@@ -128,21 +129,40 @@ angular.module('ProUrban')
                     $rootScope.descripcion = data.descripcion;
                     $rootScope.valor = data.valor;
                     $rootScope.estado = data.estado;
-					$rootScope.proceso = 2;	// 2: editar
+					$scope.proceso = 2;	// 2: editar
+					localStorageService.set("proceso", $scope.proceso);
 				}
 			}, function(err) {
 				// MANEJO DE ERRORES
 			});
 		}
+
+		$scope.goTo = function(url) {
+			clearForm();
+			$location.path(url);
+		}
         
 		//	Limpia los inputs de tipo text del formulario
 		function clearForm() {
+			$rootScope.id = "";
+            $rootScope.descripcion = "";
+            $rootScope.valor = "";
+            $rootScope.estado = "";
+			$scope.proceso = 1;	// 1: insertar
+			localStorageService.set("proceso", $scope.proceso);
 			$('#areaForm input[type="text"]').val("");
 		}
 
     
         $scope.getAreas();
-        
 
+        $rootScope.estados = [
+			{ id: "1", descripcion: "ACTIVO" },
+			{ id: "2", descripcion: "INACTIVO" }
+		];
+		$rootScope.estado = {
+			id: "-1",
+			name: "Seleccione una opción"
+		};
 	}
 ]);

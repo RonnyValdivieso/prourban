@@ -4,7 +4,7 @@ angular.module('ProUrban')
 .controller('inmuebleController', ['$scope', '$rootScope', '$location', 'localStorageService', 'InmuebleService', 'UsuarioService',
 	function($scope, $rootScope, $location, localStorageService, InmuebleService, UsuarioService) {
 
-		$scope.proceso = 1;	// 1: insertar
+		$scope.proceso = localStorageService.get("proceso");	// 1: insertar
         
         $scope.getInmuebles = getInmuebles;
         $scope.insertarInmueble = insertarInmueble;
@@ -31,31 +31,8 @@ angular.module('ProUrban')
         }
 
 		//	Insertar Inmueble
-        
-        
-		/*function insertarInmueble() {
-			if ($scope.proceso === 1) {
-                InmuebleService.insertarInmueble($scope.manzana, $scope.numero_villa, $scope.numero_pisos, $scope.numero_cuartos, $scope.numero_banios, $scope.usuario_id)
-				.then(function(response) {
-					// MANEJO DE RESPUESTA
-					response = JSON.parse(response.respuesta);
-
-					if (response.codigo === 1) {
-						clearForm();
-                        $scope.getInmuebles();
-						
-					}
-
-					alert(response.mensaje);
-                    $location.path('/inmuebles');
-				}, function(err){
-					// MANEJO DE ERRORES
-				});
-			} else if ($rootScope.proceso === 2) {
-				modificarInmueble();
-			}
-		}*/
         function insertarInmueble() {
+        	$scope.proceso = localStorageService.get("proceso");	// 1: insertar
 			var parametros = {
                 manzana: $scope.manzana,
                 numero_villa: $scope.numero_villa,
@@ -74,17 +51,14 @@ angular.module('ProUrban')
 					if (response.codigo === 1) {
 						clearForm();
                         $scope.getInmuebles;
-						//$location.path('inmuebles');
 					}
 
 					alert(response.mensaje);
-                    $location.path('inmuebles');
+                    $location.path('/inmuebles');
 				}, function(err){
 					// MANEJO DE ERRORES
 				});
 			} else if ($rootScope.proceso === 2) {
-				//Object.assign({id: $scope.id}, parametros);
-				//parametros.id = $scope.id;
                 modificarInmueble();
 			}
 		}
@@ -92,35 +66,6 @@ angular.module('ProUrban')
         
 		//modificar Proveedor
 		function modificarInmueble() {
-			/*var parametros = {
-                id: id,
-                manzana: parametros.manzana,
-                numero_villa: parametros.numero_villa,
-                numero_pisos: parametros.numero_pisos,
-                numero_cuartos: parametros.numero_cuartos,
-                numero_banios: parametros.numero_banios,
-                usuario_id: parametros.usuario_id
-               
-            };*/
-            InmuebleService.modificarInmueble($scope.id, $scope.manzana, $scope.numero_villa, $scope.numero_pisos, $scope.numero_cuartos, $scope.numero_banios, $scope.usuario_id)
-			.then(function(response) {
-				// MANEJO DE RESPUESTA
-				response = JSON.parse(response.respuesta);
-
-				if (response.codigo === 1) {
-					clearForm();
-                    $scope.getInmuebles();
-					$scope.proceso = 1;	// 1: insertar
-				}
-
-				alert(response.mensaje);
-                $location.path('/inmuebles');
-			}, function(err){
-				// MANEJO DE ERRORES
-			});
-		}
-        
-        /*function modificarInmueble(id, parametros) {
 			var parametros = {
                 id: id,
                 manzana: parametros.manzana,
@@ -128,8 +73,9 @@ angular.module('ProUrban')
                 numero_pisos: parametros.numero_pisos,
                 numero_cuartos: parametros.numero_cuartos,
                 numero_banios: parametros.numero_banios,
-                usuario_id: parametros.usuario_id
-			};
+                usuario_id: parametros.usuario_id.id
+            };
+
             InmuebleService.modificarInmueble(parametros)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
@@ -139,15 +85,15 @@ angular.module('ProUrban')
 					clearForm();
                     $scope.getInmuebles();
 					$scope.proceso = 1;	// 1: insertar
+					localStorageService.set("proceso", $scope.proceso);
 				}
 
 				alert(response.mensaje);
-                location.path('/inmuebles');
+                $location.path('/inmuebles');
 			}, function(err){
 				// MANEJO DE ERRORES
 			});
-		}*/
-
+		}
 
 		//eliminar Proveedor
 		function eliminarInmueble(id) {
@@ -171,8 +117,6 @@ angular.module('ProUrban')
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);
-                
-                //$manzana, $numero_villa, $numero_pisos, $numero_cuartos, $numero_banios, $usuario_id
 
 				if (response.codigo === 1) {
 					var data = response.datos[0];
@@ -186,17 +130,29 @@ angular.module('ProUrban')
                         id: data.usuario_id,
                         name: data.nombre_usuario
                     };
-					/*$scope.descripcion = data.descripcion;
-					$scope.ruc = data.ruc;*/
-					$rootScope.proceso = 2;	// 2: editar
+					$scope.proceso = 2;	// 2: editar
+					localStorageService.set("proceso", $scope.proceso);
 				}
 			}, function(err) {
 				// MANEJO DE ERRORES
 			});
 		}
 
+		$scope.goTo = function(url) {
+			clearForm();
+			$location.path(url);
+		}
+
 		//	Limpia los inputs de tipo text del formulario
 		function clearForm() {
+			$rootScope.id = "";
+            $rootScope.manzana = "";
+            $rootScope.numero_villa = "";
+            $rootScope.numero_pisos = "";
+            $rootScope.numero_cuartos = "";
+            $rootScope.numero_banios = "";
+			$scope.proceso = 1;	// 1: insertar
+			localStorageService.set("proceso", $scope.proceso);
 			$('#inmuebleForm input[type="text"]').val("");
 		}
 
