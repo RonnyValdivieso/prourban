@@ -12,9 +12,6 @@
                   
 					<a href="#!/conceptopagose" class="navbar-right"><button type="button" click-on="getConceptopagose()" class="btn btn-warning">Conceptos de pago eliminados</button></a>
 					<a href="#!/insertarconceptopago" class="navbar-right"><button type="button" class="btn btn-success">Añadir Nuevo</button></a>
-
-
-
 					<div class="clearfix"> </div>
 					<div class="x_content">
 						<div class="dashboard-widget-content">
@@ -26,6 +23,7 @@
 									<tr>
 										<td><strong>Id</strong></td>
 										<td><strong>Nombre de concepto de pago</strong></td>
+										<td><strong>Valor</strong></td>
                                         <td><strong>Estado</strong></td>
 										<td class="text-center"><strong>Acciones</strong></td>
 									</tr>
@@ -34,6 +32,7 @@
 									<tr ng-repeat="item in data">
 										<td style="width:40px">{{item.id}}</td>
 										<td>{{item.descripcion}}</td>
+										<td>{{item.valor}}</td>
                                         <td>{{item.estado}}</td>
 										<td class="text-center">
 											<a  class="btn btn-primary" type="submit" ng-click="buscarConceptopago(item.id)" href="#!/editarconceptopago">Editar</a>

@@ -27,11 +27,11 @@ angular.module('ProUrban')
 		return $soap.post(AppConfig.apiUrl, "ListaConceptopagose");
 		}
 
-		function insertarConceptopago(descripcion, estado){
+		function insertarConceptopago(descripcion, valor, estado){
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "InsertarConceptopago",
-				{ descripcion: descripcion, estado: estado });
+				{ descripcion: descripcion, valor: valor, estado: estado });
 		}
         
 
@@ -42,11 +42,11 @@ angular.module('ProUrban')
 				{ id: id });
 		}
 
-		function modificarConceptopago(id, descripcion, estado) {
+		function modificarConceptopago(id, descripcion, valor, estado) {
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "ModificarConceptopago",
-                              { id: id, descripcion: descripcion, estado: estado });
+                              { id: id, descripcion: descripcion, valor: valor, estado: estado });
 		}
 
 		function eliminarConceptopago(id) {

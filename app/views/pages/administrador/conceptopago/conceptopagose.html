@@ -26,6 +26,7 @@
 									<tr>
 										<td><strong>Id</strong></td>
 										<td><strong>Nombre de Concepto de pago</strong></td>
+										<td><strong>Valor</strong></td>
                                         <td><strong>Estado</strong></td>
 										<td class="text-center"><strong>Acciones</strong></td>
 									</tr>
@@ -35,6 +36,7 @@
 									<tr ng-repeat="item in data">
 										<td style="width:40px">{{item.id}}</td>
 										<td>{{item.descripcion}}</td>
+										<td>{{item.valor}}</td>
                                         <td>{{item.estado}}</td>
 										<td class="text-center">
 											<button  class="btn btn-primary" ng-click="activarConceptopago(item.id)">Activar</button>

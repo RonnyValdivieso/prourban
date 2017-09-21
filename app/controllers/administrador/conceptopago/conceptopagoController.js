@@ -24,6 +24,7 @@ angular.module('ProUrban')
 
 				if (response.codigo === 1) {
 					$scope.data = response.datos;
+
 				} else {
 					alert(response.mensaje);
 				}
@@ -35,12 +36,11 @@ angular.module('ProUrban')
 
         function getConceptopagos(){
             ConceptopagoService.getConceptopagos()
-            .then(function(response) {
-                
-                response = JSON.parse(response.respuesta);
-                
+            .then(function(response) {                
+                response = JSON.parse(response.respuesta);         
                 if(response.codigo === 1){
                     $scope.data = response.datos;
+                    console.log($scope.data);
                 } else {
                     alert(response.mensaje);
                 }
@@ -51,15 +51,14 @@ angular.module('ProUrban')
     
 		function insertarConceptopago() {
 			if ($rootScope.proceso === 1) {
-                ConceptopagoService.insertarConceptopago($scope.descripcion, $scope.estado)
+                ConceptopagoService.insertarConceptopago($scope.descripcion, $scope.valor, $scope.estado)
 				.then(function(response) {
 					// MANEJO DE RESPUESTA
 					response = JSON.parse(response.respuesta);
 
 					if (response.codigo === 1) {
 						clearForm();
-                               $scope.getConceptopagos();
-                    
+                         $scope.getConceptopagos();
 					}
 
 					alert(response.mensaje);
@@ -77,7 +76,7 @@ angular.module('ProUrban')
                             
 		function modificarConceptopago() {
 			console.log($scope.id);
-            ConceptopagoService.modificarConceptopago($scope.id, $scope.descripcion, $scope.estado)
+            ConceptopagoService.modificarConceptopago($scope.id, $scope.descripcion, $scope.valor, $scope.estado)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
 				response = JSON.parse(response.respuesta);
