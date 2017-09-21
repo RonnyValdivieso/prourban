@@ -7,12 +7,9 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<div class="row">
-						<div class="col-xs-12 col-sm-10 col-md-10">
-							<h2>Gastos Pendientes</h2>
-						</div>
-						<div class="col-xs-6 col-sm-2 col-md-2">
-							<a href="#!/form_gastos" class="btn btn-success">Nuevo</a>
-						</div>
+						<h2>Gastos Pendientes</h2>
+						<a type="button" class="btn btn-warning navbar-right" href="#!/gastos/pagados">Cuentas Pagadas</a>
+						<button ng-click="goTo('/gastos/nuevo')" type="button" class="btn btn-success navbar-right">Nuevo</button>
 					</div>
 					<div class="clearfix"></div>
 					<div class="x_content">
@@ -37,8 +34,8 @@
 											<td class="fs15 fw700 text-right">{{item.total}}</td>
 											<td class="fs15 fw700 text-right">{{item.nombre_proveedor}}</td>
 											<td class="text-center">
-												<button class="btn btn-primary" ng-click="buscarCuentaxpagar(item.id)">Editar</button>
-												<button class="btn btn-danger" ng-click="eliminarCuentaxpagar(item.id)">Eliminar</button>
+												<button class="btn btn-success" ng-click="generarPago(item)">Pagar</button>
+												<a type="button" class="btn btn-primary" ng-href="#!/gastos/editar" ng-click="buscarCuentaxpagar(item.id)">Editar</a>
 											</td>
 										</tr>
 									</tbody>

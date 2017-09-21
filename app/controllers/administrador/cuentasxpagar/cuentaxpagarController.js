@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('ProUrban')
-.controller('cuentaxpagarController', ['$scope', '$rootScope', '$location', 'localStorageService', 'CuentaxpagarService', 'ProveedorService',
-	function($scope, $rootScope, $location, localStorageService, CuentaxpagarService, ProveedorService) {
+.controller('cuentaxpagarController', ['$scope', '$rootScope', '$location', 'localStorageService', 'CuentaxpagarService', 'ProveedorService', 'FacturaService',
+	function($scope, $rootScope, $location, localStorageService, CuentaxpagarService, ProveedorService, FacturaService) {
 
-		$scope.proceso = 1;	// 1: insertar
+		$scope.proceso = localStorageService.get("proceso");	// 1: insertar
 
 		$scope.getCuentasxpagar = getCuentasxpagar;
 		$scope.insertarCuentaxpagar = insertarCuentaxpagar;
@@ -31,6 +31,7 @@ angular.module('ProUrban')
 
 		//	Insertar Proveedor
 		function insertarCuentaxpagar() {
+			$scope.proceso = localStorageService.get("proceso");
 			var parametros = {
 				descripcion: $scope.descripcion,
 				fecha: $scope.fecha,
@@ -47,11 +48,11 @@ angular.module('ProUrban')
 
 					if (response.codigo === 1) {
 						clearForm();
-						//$scope.getCuentasxpagar();
-						$location.path('gastos');
+						$scope.getCuentasxpagar();
 					}
 
 					alert(response.mensaje);
+					$location.path('gastos');
 				}, function(err){
 					// MANEJO DE ERRORES
 				});
@@ -72,6 +73,8 @@ angular.module('ProUrban')
 				numero_referencia: parametros.numero_referencia,
 				proveedor_id: parametros.proveedor_id
 			};
+
+			console.log(parametros);
 			CuentaxpagarService.modificarCuentaxpagar(parametros)
 			.then(function(response) {
 				// MANEJO DE RESPUESTA
@@ -81,9 +84,11 @@ angular.module('ProUrban')
 					clearForm();
 					$scope.getCuentasxpagar();
 					$scope.proceso = 1;	// 1: insertar
+					localStorageService.set("proceso", $scope.proceso);
 				}
 
 				alert(response.mensaje);
+				$location.path("/gastos");
 			}, function(err){
 				// MANEJO DE ERRORES
 			});
@@ -115,28 +120,89 @@ angular.module('ProUrban')
 
 				if (response.codigo === 1) {
 					var data = response.datos[0];
-					$scope.id = data.id;
-					$scope.descripcion = data.descripcion;
-					$scope.fecha = data.fecha;
-					$scope.total = data.total;
-					$scope.numero_referencia = data.numero_referencia;
-					$scope.proveedor = {
+					$rootScope.id = data.id;
+					$rootScope.descripcion = data.descripcion;
+					$rootScope.fecha = dateToObject(data.fecha);
+					$rootScope.total = data.total;
+					$rootScope.numero_referencia = data.numero_referencia;
+					$rootScope.proveedor = {
 						id: data.proveedor_id,
 						name: data.nombre_proveedor
 					};
 					$scope.proceso = 2;	// 2: editar
+					localStorageService.set("proceso", $scope.proceso);
 				}
 			}, function(err) {
 				// MANEJO DE ERRORES
 			});
 		}
 
+		// guardar asiento Pago a proveedores
+		$scope.generarPago = function(item) {
+			var date = new Date();
+			var dateFinal = date.getFullYear() + "/" + (date.getMonth() +1) + "/" + date.getDate();
+			var conceptoPago = "Pago a proveedores"
+			console.log("conceptoPago:::",conceptoPago);
+			FacturaService.guardarAsientoProveedores(dateFinal, item.total, conceptoPago, item.numero_referencia, item.id)
+			.then(function(response) {
+				// MANEJO DE RESPUESTA
+
+				response = JSON.parse(response.respuesta);
+
+				if (response.codigo === 1) {
+					CuentaxpagarService.pagarCuenta(item.id)
+					.then(function(response) {
+
+						response = JSON.parse(response.respuesta);
+
+						if (response.codigo === 1) {
+							alert('se guardo el asiento correctamente');
+							$scope.getCuentasxpagar();
+						}
+
+					}, function(err) {
+						console.log("ERROR: " + err);
+					});
+				} else {
+					alert(response.mensaje);
+				}
+			}, function(err) {
+				// MANEJO DE ERRORES
+			});
+		}
+
+		$scope.goTo = function(url) {
+			clearForm();
+			$location.path(url);
+		}
+
 		//	Limpia los inputs de tipo text del formulario
 		function clearForm() {
+			$rootScope.descripcion = "";
+			$rootScope.fecha = "";
+			$rootScope.total = "";
+			$rootScope.numero_referencia = "";
+			$rootScope.proveedor = {
+				id: "",
+				name: ""
+			};
+			$scope.proceso = 1;	// 1: insertar
+			localStorageService.set("proceso", $scope.proceso);
 			$('#cuentaxpagarForm input[type="text"]').val("");
 		}
 
+		function dateToObject(strDate) {
+			var date = new Date(strDate);
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var day = date.getDate() + 1;
+			strDate = year + "-" + month + "-" + day;
+
+			return new Date(strDate);
+		}
+
 		$scope.getCuentasxpagar();
+
 		ProveedorService.getProveedores()
 		.then(function(response) {
 			$scope.proveedores = JSON.parse(response.respuesta).datos;

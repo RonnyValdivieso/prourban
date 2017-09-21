@@ -9,6 +9,8 @@ angular.module('ProUrban')
 		service.modificarProveedor = modificarProveedor;
 		service.eliminarProveedor = eliminarProveedor;
 		service.buscarProveedor = buscarProveedor;
+    service.getProveedoresInactivos = getProveedoresInactivos;
+		service.activarProveedor = activarProveedor;
 
 		return service;
 
@@ -16,6 +18,11 @@ angular.module('ProUrban')
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "ListaProveedores");
+    }
+
+		function getProveedoresInactivos() {
+
+			return $soap.post(AppConfig.apiUrl, "ListaProveedoresInactivos");
 		}
 
 		function insertarProveedor(descripcion, ruc) {
@@ -43,6 +50,12 @@ angular.module('ProUrban')
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "EliminarProveedor",
+				{ id: id });
+		}
+    
+    function activarProveedor(id) {
+
+			return $soap.post(AppConfig.apiUrl, "ActivarProveedor",
 				{ id: id });
 		}
 	}

@@ -6,6 +6,7 @@ angular.module('ProUrban')
 
 		service.getAsientoDebito = getAsientoDebito;
 		service.getAsientoCredito = getAsientoCredito;
+		service.insertarAsiento = insertarAsiento;
 
 
 		return service;
@@ -16,6 +17,11 @@ angular.module('ProUrban')
 
 		function getAsientoCredito() {
 			return $soap.post(AppConfig.apiUrl, "ListaAsientoCredito");
+		}
+
+		function insertarAsiento(parametros) {
+			return $soap.post(AppConfig.apiUrl, "InsertarAsiento",
+					parametros);
 		}
 	}
 ]);

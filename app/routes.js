@@ -17,13 +17,33 @@ angular.module('ProUrban')
 			templateUrl: 'app/views/pages/administrador/gastos/gastos.html',
 			controller: 'cuentaxpagarController'
 		})
-		.when('/form_gastos', {
-			templateUrl: 'app/views/pages/administrador/gastos/form_gastos.html',
+		.when('/gastos/nuevo', {
+			templateUrl: 'app/views/pages/administrador/gastos/formulario.html',
 			controller: 'cuentaxpagarController'
 		})
+    .when('/gastos/editar', {
+			templateUrl: 'app/views/pages/administrador/gastos/formulario.html',
+			controller: 'cuentaxpagarController'
+		})
+		.when('/gastos/pagados', {
+			templateUrl: 'app/views/pages/administrador/gastos/pagados.html',
+			controller: 'cxpInactivosController'
+		})
 		.when('/proveedores', {
-			templateUrl: 'app/views/pages/administrador/proveedores.html',
+			templateUrl: 'app/views/pages/administrador/proveedores/proveedores.html',
 			controller: 'proveedorController'
+      })
+		.when('/proveedores/nuevo', {
+			templateUrl: 'app/views/pages/administrador/proveedores/formulario.html',
+			controller: 'proveedorController'
+		})
+		.when('/proveedores/editar', {
+			templateUrl: 'app/views/pages/administrador/proveedores/formulario.html',
+			controller: 'proveedorController'
+		})
+		.when('/proveedores/inactivos', {
+			templateUrl: 'app/views/pages/administrador/proveedores/inactivos.html',
+			controller: 'prvInactivosController'
 		})
 		.when('/deudas', {
 			templateUrl: 'app/views/pages/administrador/deudas/deudas.html',
@@ -54,13 +74,18 @@ angular.module('ProUrban')
 			controller: 'estadoreservaController'
 		})
 		.when('/cuentas', {
-			templateUrl: 'app/views/pages/administrador/cuentas.html',
+			templateUrl: 'app/views/pages/administrador/asientoContable/cuentas.html',
 			controller: 'cuentasController'
 		})
 		.when('/asientoContable', {
-			templateUrl: 'app/views/pages/administrador/asientoContable.html',
+			templateUrl: 'app/views/pages/administrador/asientoContable/asientoContable.html',
 			controller: 'asientoController'
 		})
+		.when('/asientoContable/nuevo', {
+			templateUrl: 'app/views/pages/administrador/asientoContable/generarAsiento.html',
+			controller: 'asientoController'
+		})
+
 		.when('/areas', {
 			templateUrl: 'app/views/pages/administrador/areas/areas.html',
 			controller: 'areaController'
@@ -81,10 +106,11 @@ angular.module('ProUrban')
 			templateUrl: 'app/views/pages/administrador/inmuebles/inmuebles.html',
 			controller: 'inmuebleController'
 		})
-		.when('/insertarinmueble', {
-			templateUrl: 'app/views/pages/administrador/inmuebles/agregarinmuebles.html',
-			controller: 'inmuebleController'
-		})
+    .when('/insertarinmueble', {
+      templateUrl: 'app/views/pages/administrador/inmuebles/agregarinmuebles.html',
+      controller: 'inmuebleController'
+    })
+		
 		 .when('/modificarinmueble', {
 			templateUrl: 'app/views/pages/administrador/inmuebles/modificarinmueble.html',
 			controller: 'inmuebleController'

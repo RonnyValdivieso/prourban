@@ -6,27 +6,19 @@
 		<div class="col-md-12 col-xs-12">
 			<div class="x_panel">
 				<div class="x_title">
-					<h2>A帽adir Gastos</h2>
-					<ul class="nav navbar-right panel_toolbox">
-						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-					</ul>
+					<h2>Añadir Gastos</h2>
 					<div class="clearfix"></div>
 				</div>
 				<div class="x_content">
 					<br />
-					<form novalidate id="cuentaxpagarForm" class="form-horizontal form-label-left" ng-submit="insertarCuentaxpagar()">
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Descripci贸n</label>
-							<div class="col-md-9 col-sm-9 col-xs-12">
-								<input type="text" class="form-control" placeholder="Descripci贸n" ng-model="descripcion">
-							</div>
-						</div>
+					<form id="cuentaxpagarForm" class="form-horizontal form-label-left" ng-submit="insertarAsiento()">
+						
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
 								<div class="form-group">
 									<div class='input-group date' id='myDatepicker2'>
-										<input type='text' class="form-control" ng-model="fecha"/>
+										<input type='date' class="form-control" placeholder="2017-10-12" ng-model="fecha" value="{{$parent.fecha}}" ng-required="true">
 										<span class="input-group-addon">
 											 <span class="glyphicon glyphicon-calendar"></span>
 										</span>
@@ -34,32 +26,42 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Total a Pagar</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
-								<input type="text" class="form-control" placeholder="Total a Pagar" ng-model="total">
+								<input type="text" class="form-control" placeholder="Descripcion" ng-model="descripcion" ng-required="true">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">N煤mero de Referencia</label>
-							<div class="col-md-9 col-sm-9 col-xs-12">
-								<input type="text" class="form-control" placeholder="N煤mero de Referencia" ng-model="numero_referencia">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Proveedor</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Debe</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
 								<select class="select2_single form-control" tabindex="-1" 
-									ng-options="option.descripcion for option in proveedores track by option.id"
-									ng-model="proveedor">
+									ng-options="option.descripcion for option in cuentasPasivo track by option.id"
+									ng-model="cuentaPasivo">
 								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Haber</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<select class="select2_single form-control" tabindex="-1" 
+									ng-options="option.descripcion for option in cuentasActivo track by option.id"
+									ng-model="cuentaActivo">
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Monto</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<input type="text" class="form-control" placeholder="Valor" ng-model="valor">
 							</div>
 						</div>
 						<div class="ln_solid"></div>
 						<div class="form-group">
 							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-								<button type="button" class="btn btn-primary">Cancel</button>
-								<button type="reset" class="btn btn-primary">Reset</button>
 								<button type="submit" class="btn btn-success">Guardar</button>
 							</div>
 						</div>
