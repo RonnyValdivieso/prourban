@@ -3,21 +3,19 @@
 <!-- page content -->
 <div class="right_col" role="main">
 	<div class="row">
-		
-         <div class="col-md-12 col-sm-12 col-xs-12">
-		<div class="x_panel">
-			<div class="x_title">
-				<h2>Añadir Inmueble</h2>
-				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-			<div class="x_content">
-				<br />
-				<form novalidate id="inmuebleForm" class="form-horizontal form-label-left" ng-submit="insertarInmueble()">
-					<div class="form-group">
-                        
+		<div class="col-md-12 col-xs-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>Añadir Gastos</h2>
+					<ul class="nav navbar-right panel_toolbox">
+						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+					<br />
+					<form novalidate id="inmuebleForm" class="form-horizontal form-label-left" ng-submit="insertarInmueble()">
+						<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Manzana</label>
 						<div class="col-md-9 col-sm-9 col-xs-12">
 					  		<input id="manzana" type="text" class="form-control" placeholder="Ejemplo: 61" ng-model="manzana">
@@ -47,51 +45,29 @@
 							<input id="numero_banios" type="text" class="form-control" placeholder="" ng-model="numero_banios">
 						</div>
 					</div>
-                    <!--<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
-						<div class="col-md-9 col-sm-9 col-xs-12">
-							<input id="usuario_id" type="text" class="form-control" placeholder=" Ej: 1 " ng-model="usuario_id">
-						</div>
-					</div>-->
-                     <!--<div class="form-group">
+						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
 								<select class="select2_single form-control" tabindex="-1" 
 									ng-options="option.nombre_usuario for option in usuarios track by option.id"
-									ng-model="usuario_id">
+									ng-model="usuario">
 								</select>
 							</div>
-						</div>-->
-                    <div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
-								<div class="col-md-9 col-sm-9 col-xs-12">
-									<select class="form-control" id="usuario_id" ng-model="usuario_id">
-										
-                                        <option value="1">admin</option>
-					<option value="3">rsabando</option>
-                                        <option value="4">lucero</option>
-                                        <option value="5">aroman</option>
-                                        <option value="6">diascoel</option>
-										
-									</select>
-								</div>
-					</div>
-					<div class="ln_solid"></div>
-					<div class="form-group">
-						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                             <input type="button" class="btn btn-primary" onclick="parent.location='#!/inmuebles'" value="Volver">
-							<!--<button type="button" class="btn btn-primary">Cancel</button>-->
-							<button type="reset" class="btn btn-primary">Reset</button>
-							<input type="submit" class="btn btn-success" value="Guardar"/>
-                            <!--<button type="submit" class="btn btn-success">Guardar</button>-->
 						</div>
-					</div>
-				</form>
+						<div class="ln_solid"></div>
+						<div class="form-group">
+							<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+								<button type="button" class="btn btn-primary" onclick="parent.location='#!/inmuebles'">Cancel</button>
+                                <!--<input type="button" class="btn btn-primary" onclick="parent.location='#!/inmuebles'" value="Volver">-->
+								<button type="reset" class="btn btn-primary">Reset</button>
+								<button type="submit" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
 </div>
 <!-- /page content -->
 <div footer></div>

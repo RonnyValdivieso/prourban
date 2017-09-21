@@ -19,15 +19,14 @@ return service;
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "ListaInmuebles");
 		}
-
-		function insertarInmueble(manzana, numero_villa, numero_pisos, numero_cuartos, numero_banios, usuario_id){
+        
+        function insertarInmueble(parametros){
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "InsertarInmueble",
-				{ manzana: manzana, numero_villa: numero_villa, numero_pisos: numero_pisos, numero_cuartos: numero_cuartos, numero_banios: numero_banios, usuario_id: usuario_id });
+				parametros);
 		}
         
-
 		function buscarInmueble(id) {
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
@@ -35,11 +34,18 @@ return service;
 				{ id: id });
 		}
 
-		function modificarInmueble(id, manzana, numero_villa, numero_pisos, numero_cuartos, numero_banios, usuario_id) {
+		/*function modificarInmueble(id, manzana, numero_villa, numero_pisos, numero_cuartos, numero_banios, usuario_id) {
 			//	Realiza la llamada al servicio web enviando los parámetros
 			//	en formato JSON
 			return $soap.post(AppConfig.apiUrl, "ModificarInmueble",
 					{ id: id, manzana: manzana, numero_villa: numero_villa, numero_pisos: numero_pisos, numero_cuartos: numero_cuartos, numero_banios: numero_banios, usuario_id: usuario_id });
+		}*/
+        
+        function modificarInmueble(manzana, numero_villa, numero_pisos, numero_cuartos, numero_banios, usuario_id) {
+			//	Realiza la llamada al servicio web enviando los parámetros
+			//	en formato JSON
+			return $soap.post(AppConfig.apiUrl, "ModificarInmueble",
+                    { manzana: manzana, numero_villa: numero_villa, numero_pisos: numero_pisos, numero_cuartos: numero_cuartos, numero_banios: numero_banios, usuario_id: usuario_id });
 		}
 
 		function eliminarInmueble(id) {
