@@ -23,7 +23,7 @@ angular.module('ProUrban')
 
                 } else {
                     alert(response.mensaje);
-                    $location.path('/areas');
+                    //$location.path('/areas');
                 }
             }, function(err){
                 

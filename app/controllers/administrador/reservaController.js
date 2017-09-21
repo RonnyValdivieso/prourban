@@ -5,17 +5,14 @@ angular.module('ProUrban')
 	function($scope, $rootScope, $location, localStorageService, ReservaService) {
 		
         $scope.getReserva = getReserva;
-         $scope.getArea = getArea;
+        $scope.getArea = getArea;
         $scope.CancelarPreReserva = CancelarPreReserva;
         $scope.proceso = 1;	// 1: insertar
-         $scope.guardarHora = guardarHora;
-         $scope.insertarHoraMantenimiento = insertarHoraMantenimiento;
-         $scope.eliminacionAutomatica = eliminacionAutomatica;
-        
-        
-        
-        
-        
+        $scope.guardarHora = guardarHora;
+        $scope.insertarHoraMantenimiento = insertarHoraMantenimiento;
+        $scope.eliminacionAutomatica = eliminacionAutomatica;
+        $scope.pagarReserva = pagarReserva;
+
 		function getReserva() {
 			ReservaService.getReserva()
 			.then(function(response) {
@@ -112,28 +109,11 @@ angular.module('ProUrban')
 				//modificarProveedor();
 			}
 		}
-        
-        /*function guardarHora(id) {
-            console.log(id);
-			ReservaService.guardarHora(id)
-			.then(function(response) {
-				// MANEJO DE RESPUESTA
-				response = JSON.parse(response.respuesta);
 
-				if (response.codigo === 1) {
-					$scope.getReserva();
-				}
-
-				alert(response.mensaje);
-			}, function(err){
-				// MANEJO DE ERRORES
-			});
-		}*/
         function guardarHora() {
 			if ($scope.proceso === 1) {
 				ReservaService.guardarHora( $scope.valor)
 				.then(function(response) {
-                   // console.log($scope.area);
                     
 					// MANEJO DE RESPUESTA
 					response = JSON.parse(response.respuesta);
@@ -152,12 +132,44 @@ angular.module('ProUrban')
 				//modificarProveedor();
 			}
 		}
-        
-        
+
+		$scope.buscarPreReserva = function(id) {
+			ReservaService.buscarPreReserva(id)
+			.then(function(response) {
+				response = JSON.parse(response.respuesta);
+
+				if (response.codigo === 1) {
+					var data = response.datos[0];
+					var conceptopago = 4;
+
+					FacturaService.init(data.id, conceptoPago);
+					$location.path('factura');
+				} else {
+					alert(response.mensaje);
+				}
+			}, function(err) {
+				// MANEJO DE ERRORES
+			});
+		}
+
+		function pagarReserva(id) {
+			ReservaService.pagarReserva(id)
+			.then(function(response) {
+				response = JSON.parse(response.respuesta);
+
+				if (response.codigo === 1) {
+					$scope.getReserva();
+				}
+
+				alert(response.mensaje);
+				$location.path("/reserva");
+			}, function(err) {
+				// MANEJO DE ERRORES
+			});
+		}
+
         $scope.getReserva();
         $scope.getArea();
-       
-        
 	}   
                                                                                                 
 ]); 

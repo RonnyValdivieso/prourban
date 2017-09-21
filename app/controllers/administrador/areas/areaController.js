@@ -24,7 +24,6 @@ angular.module('ProUrban')
                     $scope.data = response.datos;
                 } else {
                     alert(response.mensaje);
-                    $location.path('/areas');
                 }
             }, function(err){
                 
@@ -50,7 +49,7 @@ angular.module('ProUrban')
 		function insertarArea() {
 			$scope.proceso = localStorageService.get("proceso");
 			if ($scope.proceso === 1) {
-                AreaService.insertarArea($scope.descripcion, $scope.valor, $scope.estado)
+                AreaService.insertarArea($scope.descripcion, $scope.valor, $scope.estado.descripcion)
 				.then(function(response) {
 					// MANEJO DE RESPUESTA
 					response = JSON.parse(response.respuesta);
